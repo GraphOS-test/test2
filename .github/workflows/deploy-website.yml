@@ -64,6 +64,9 @@ jobs:
     - name: Set Env
       run: echo "CONTENT=$(cat readme.json | jq .data.variant.readme.content)" >> $GITHUB_ENV
 
+    - name: Print README
+      run: echo ${{env.CONTENT}}
+
     - name: Update README
       run: |
        curl --request POST \
