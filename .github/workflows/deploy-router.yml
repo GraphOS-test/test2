@@ -43,5 +43,5 @@ jobs:
         gcloud run deploy ${{vars.ACTOR}}-contractrouter --image gcr.io/summit-enterprise-workshop/jesse-apollo-router:latest \
         --command=/dist/router \
         --set-secrets=/dist/config/router.yaml=${{vars.ACTOR}}:latest \
-        --set-env-vars "APOLLO_ROUTER_HOT_RELOAD=true,APOLLO_KEY=${{ vars.TOKEN }},APOLLO_GRAPH_REF=${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}@public" --platform managed --region us-central1 \
+        --set-env-vars "APOLLO_ROUTER_HOT_RELOAD=true,APOLLO_KEY=${{ vars.TOKEN }},APOLLO_GRAPH_REF=${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}@Public" --platform managed --region us-central1 \
         --allow-unauthenticated
