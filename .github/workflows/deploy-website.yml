@@ -20,9 +20,6 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-    - name: Set up Google Cloud SDK
-      uses: google-github-actions/setup-gcloud@v0
-
     - name: Configure Docker to use gcloud as a credential helper
       run: |
         gcloud auth configure-docker
@@ -31,7 +28,7 @@ jobs:
       run: |
         docker build -t gcr.io/summit-enterprise-workshop/${{github.actor}}-${{vars.WORKSHOPID}}-website:latest .
         docker images
-      working-directory: .final/website
+      working-directory: ./final/website
 
     - name: Push Docker image to Google Container Registry
       run: |
