@@ -46,7 +46,7 @@ jobs:
           --image gcr.io/summit-enterprise-workshop/${{github.actor}}-${{vars.WORKSHOPID}}-website:latest \
           --platform managed \
           --region us-central1 \
-          --update-env-vars APOLLO_KEY=${{ secrets.APOLLO_KEY }},APOLLO_GRAPH_REF=${{ secrets.APOLLO_GRAPH_REF }}, ROUTER_URL=${{env.url}} \
+          --update-env-vars APOLLO_KEY=${{ secrets.APOLLO_KEY }},APOLLO_GRAPH_REF=${{ secrets.APOLLO_GRAPH_REF }},ROUTER_URL=${{env.url}} \
           --allow-unauthenticated
     - name: Get URL
       run: | 
