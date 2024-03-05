@@ -59,18 +59,18 @@ jobs:
         --header 'content-type: application/json' \
         --header 'X-API-Key: user:fp.d88ba77d-487c-4b97-9780-f1e4c5352a22:ftuXT6T7OktKoMaUZhQwSw' \
         --url 'https://graphql.api.apollographql.com/api/graphql' \
-        --data '{"query":"query Query($ref: ID!) {\n  variant(ref: $ref) {\n    ... on GraphVariant {\n      readme {\n        content\n      }\n    }\n  }\n}","variables":{"ref":"${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}"}}' -o readme.json
+        --data '{"query":"query Query($ref: ID!) {\n  variant(ref: $ref) {\n    ... on GraphVariant {\n      readme {\n        content\n      }\n    }\n  }\n}","variables":{"ref":"${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}"}}'
 
-    - name: Set Env
-      run: echo "CONTENT=$(cat readme.json | jq .data.variant.readme.content)" >> $GITHUB_ENV
+    #- name: Set Env
+    #  run: echo "CONTENT=$(cat readme.json | jq .data.variant.readme.content)" >> $GITHUB_ENV
 
-    - name: Print README
-      run: echo -E ${{env.CONTENT}}
+    #- name: Print README
+    #  run: echo -E ${{env.CONTENT}}
 
-    - name: Update README
-      run: |
-       curl --request POST \
-       --header 'content-type: application/json' \
-       --header 'X-API-Key: user:fp.d88ba77d-487c-4b97-9780-f1e4c5352a22:ftuXT6T7OktKoMaUZhQwSw' \
-       --url 'https://graphql.api.apollographql.com/api/graphql' \
-       --data '{"query":"mutation Mutation($graphId: ID!, $name: String!, $readme: String!) {\n  graph(id: $graphId) {\n    variant(name: $name) {\n      updateVariantReadme(readme: $readme) {\n        readme {\n          content\n        }\n      }\n    }\n  }\n}","variables":{"graphId":"${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}","name":"current","readme":"${{env.CONTENT}}\n###WEBSITE URL \n ${{env.webURL}}"}}'
+    #- name: Update README
+    #  run: |
+    #   curl --request POST \
+    #   --header 'content-type: application/json' \
+    #   --header 'X-API-Key: user:fp.d88ba77d-487c-4b97-9780-f1e4c5352a22:ftuXT6T7OktKoMaUZhQwSw' \
+    #   --url 'https://graphql.api.apollographql.com/api/graphql' \
+    #   --data '{"query":"mutation Mutation($graphId: ID!, $name: String!, $readme: String!) {\n  graph(id: $graphId) {\n    variant(name: $name) {\n      updateVariantReadme(readme: $readme) {\n        readme {\n          content\n        }\n      }\n    }\n  }\n}","variables":{"graphId":"${{vars.ACTOR}}-${{vars.WORKSHOPID}}${{env.GEN}}","name":"current","readme":"${{env.CONTENT}}\n###WEBSITE URL \n ${{env.webURL}}"}}'
