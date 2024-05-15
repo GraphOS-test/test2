@@ -26,7 +26,7 @@ subscription:
     passthrough:
        # docker setup, for local setup comment out the following section
        all:
-         protocol: graphql_transport_ws
+         protocol: graphql_ws
          path: /
 
 ## Enter Workshop Module Configs Below
