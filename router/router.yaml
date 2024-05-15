@@ -24,8 +24,7 @@ subscription:
   mode:
     passthrough:
        # docker setup, for local setup comment out the following section
-       subgraphs:
-        products:
+       all:
          path: /
 
 ## Enter Workshop Module Configs Below
